@@ -1,0 +1,46 @@
+    /* Custom animations and styles */
+    @keyframes gradient-spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .donate-button-gradient {
+        background: conic-gradient(from 90deg at 50% 50%, #ebfbd5 0%, #059669 50%, #ebfbd5 100%);
+        animation: gradient-spin 2s linear infinite;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, #fbbf24, #d97706);
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    /* Hide mobile menu by default */
+    #mobileMenu {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        #desktopNav, #donateDesktop {
+            display: none;
+        }
+    }
+
+    @media (min-width: 769px) {
+        #mobileMenuButton {
+            display: none;
+        }
+    }
