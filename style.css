@@ -20,7 +20,7 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: linear-gradient(to right, #fbbf24, #d97706);
+        background: linear-gradient(to right, #12e75d, #057e05);
         transition: width 0.3s ease;
     }
 
