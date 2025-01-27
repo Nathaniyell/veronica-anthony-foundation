@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/@radix-ui/colors/blackA.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@radix-ui/colors/mauve.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@radix-ui/colors/violet.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: ["class"],
@@ -107,7 +108,7 @@
                 <div class="flex flex-col lg:flex-row gap-12">
                     <!-- Content Column -->
                     <div class="flex-1">
-                        <div class="max-w-3xl lg:max-w-2xl mx-auto lg:mx-0">
+                        <div data-aos="fade-right" data-aos-duration="2000" class="max-w-3xl lg:max-w-2xl mx-auto lg:mx-0">
                             <h2 class="text-4xl font-bold text-primary mb-6">About Us</h2>
                             <p class="text-lg text-gray-700 leading-relaxed mb-6">
                                 The Veronica Anthony Foundation is dedicated to creating lasting positive change in communities
@@ -117,7 +118,7 @@
                         </div>
                         <div class="grid gap-4 max-w-3xl lg:max-w-2xl mx-auto lg:mx-0">
                             <!-- Mission Card -->
-                            <div class="">
+                            <div data-aos="fade-right" data-aos-duration="2000" class="">
                                 <div class="flex items-center gap-3 mb-4">
                                     <div class="text-green-600 p-2 rounded-full bg-green-100">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
@@ -136,7 +137,7 @@
                                 </p>
                             </div>
                             <!-- Vision Card -->
-                            <div class="">
+                            <div data-aos="fade-right" data-aos-duration="2000"  class="">
                                 <div class="flex items-center gap-3 mb-4">
                                     <div class="text-blue-600 p-2 rounded-full bg-blue-100">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
@@ -155,7 +156,7 @@
                         </div>
                     </div>
                     <!-- Image Column -->
-                    <div class="lg:w-2/5">
+                    <div class="lg:w-2/5" data-aos="zoom-in-up" data-aos-duration="3000">
                         <figure class="rounded-xl overflow-hidden shadow-lg bg-white">
                             <div class="relative aspect-[4/5]">
                                 <img src="vanthf.jpg" alt="Veronica and Anthony" class="object-cover w-full h-full" />
@@ -377,8 +378,12 @@
     </footer>
 
     <script src="index.js">
-
     </script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+  </script>
 </body>
 
 </html>
