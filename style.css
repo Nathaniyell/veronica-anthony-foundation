@@ -8,12 +8,7 @@
         }
     }
 
-    .donate-button-gradient {
-        background: conic-gradient(from 90deg at 50% 50%, #f3e8ff 0%, #7c3aed 50%, #f3e8ff 100%);
-        animation: gradient-spin 2s linear infinite;
-    }
-
-    .nav-link::after {
+     .nav-link::after {
         content: '';
         position: absolute;
         bottom: -2px;
