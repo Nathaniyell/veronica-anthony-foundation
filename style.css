@@ -1,3 +1,6 @@
+    *{
+        font-family: 'Geist Mono', sans-serif;
+    }
     /* Custom animations and styles */
     @keyframes gradient-spin {
         from {
