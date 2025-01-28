@@ -9,7 +9,7 @@
     }
 
     .donate-button-gradient {
-        background: conic-gradient(from 90deg at 50% 50%, #ebfbd5 0%, #059669 50%, #ebfbd5 100%);
+        background: conic-gradient(from 90deg at 50% 50%, #f3e8ff 0%, #7c3aed 50%, #f3e8ff 100%);
         animation: gradient-spin 2s linear infinite;
     }
 
@@ -20,7 +20,7 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: linear-gradient(to right, #12e75d, #057e05);
+        background: linear-gradient(to right, #7c3aed, #6d28d9);
         transition: width 0.3s ease;
     }
 

@@ -1,48 +1,48 @@
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const counters = document.querySelectorAll(".count");
-        let scrolled = false;
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count");
+    let scrolled = false;
 
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute("data-target");
-                    const current = +counter.innerText;
-                    const increment = target / 100;
+    const animateCounters = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute("data-target");
+                const current = +counter.innerText;
+                const increment = target / 100;
 
-                    if (current < target) {
-                        counter.innerText = Math.ceil(current + increment);
-                        setTimeout(updateCount, 100);
-                    } else {
-                        counter.innerText = target; 
-                    }
-                };
+                if (current < target) {
+                    counter.innerText = Math.ceil(current + increment);
+                    setTimeout(updateCount, 100);
+                } else {
+                    counter.innerText = target;
+                }
+            };
 
-                updateCount();
-            });
-        };
+            updateCount();
+        });
+    };
 
-        const handleScroll = () => {
-            const statsSection = document.getElementById("stats");
-            const sectionPosition = statsSection.getBoundingClientRect();
-            if (sectionPosition.top <= window.innerHeight && !scrolled) {
-                animateCounters();
-                scrolled = true; // Ensure it only animates once
-            }
-        };
+    const handleScroll = () => {
+        const statsSection = document.getElementById("stats");
+        const sectionPosition = statsSection.getBoundingClientRect();
+        if (sectionPosition.top <= window.innerHeight && !scrolled) {
+            animateCounters();
+            scrolled = true; // Ensure it only animates once
+        }
+    };
 
-        window.addEventListener("scroll", handleScroll);
-    });
+    window.addEventListener("scroll", handleScroll);
+});
 
-   // Handle scroll effects
-   window.addEventListener('scroll', () => {
+// Handle scroll effects
+window.addEventListener('scroll', () => {
     const header = document.getElementById('mainHeader');
     if (window.scrollY > 20) {
-        header.classList.remove('bg-gradient-to-r', 'from-green-50', 'to-green-100');
+        header.classList.remove('bg-gradient-to-r', 'from-purple-50', 'to-purple-100');
         header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-lg');
     } else {
-        header.classList.add('bg-gradient-to-r', 'from-green-50', 'to-green-100');
+        header.classList.add('bg-gradient-to-r', 'from-purple-50', 'to-purple-100');
         header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-lg');
     }
 });
