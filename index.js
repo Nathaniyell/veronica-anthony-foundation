@@ -17,57 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Counter Animation
-    const counters = document.querySelectorAll('.count');
-    let started = false;
-
-    const startCount = (el) => {
-        const target = parseInt(el.getAttribute('data-target'));
-        const duration = 2000; // Animation duration in milliseconds
-        const step = target / (duration / 16); // 60 FPS
-        let current = 0;
-
-        const updateCounter = () => {
-            current += step;
-            if (current < target) {
-                el.textContent = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                el.textContent = target;
-            }
-        };
-
-        updateCounter();
-    };
-
-    const isElementInViewport = (el) => {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-        // Check if at least 30% of the element is visible
-        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-        const elementHeight = rect.bottom - rect.top;
-        const visibleRatio = visibleHeight / elementHeight;
-
-        return visibleRatio > 0.3;
-    };
-
-    const handleScroll = () => {
-        if (!started && counters.length > 0) {
-            const statsSection = document.querySelector('#impact');
-            if (isElementInViewport(statsSection)) {
-                counters.forEach(counter => startCount(counter));
-                started = true;
-                // Remove scroll listener after animation starts
-                window.removeEventListener('scroll', handleScroll);
-            }
-        }
-    };
-
-    // Initial check and scroll listener
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-
+    
     // Handle scroll effects for header
     window.addEventListener('scroll', () => {
         const header = document.getElementById('mainHeader');
