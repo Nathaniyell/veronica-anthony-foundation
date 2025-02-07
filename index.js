@@ -1,7 +1,25 @@
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Smooth scroll functionality for all navigation links
+        const scrollToTopButton = document.getElementById('scrollToTop');
+   
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            scrollToTopButton.classList.remove('opacity-0', 'translate-y-10');
+        } else {
+            scrollToTopButton.classList.add('opacity-0', 'translate-y-10');
+        }
+    });
+
+
+    scrollToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+ 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -17,8 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    
-    // Handle scroll effects for header
+
     window.addEventListener('scroll', () => {
         const header = document.getElementById('mainHeader');
         if (window.scrollY > 20) {
@@ -50,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Close mobile menu when clicking on links
+
     document.querySelectorAll('#mobileMenu a').forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.style.display = 'none';
