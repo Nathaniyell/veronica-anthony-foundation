@@ -638,8 +638,40 @@
                             data-aos="fade-up" data-aos-delay="300">
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="relative h-full">
-                                    <img src="event1.jpg" alt="School-Based Outreach Event"
-                                        class="w-full h-full object-cover" />
+                                    <!-- Carousel Container -->
+                                    <div class="relative h-full carousel-container">
+                                        <div class="h-full carousel-slides">
+                                            <img src="event1.jpg" alt="School-Based Outreach Event"
+                                                class="w-full h-full object-cover carousel-slide" />
+                                            <img src="event2.png" alt="School-Based Outreach Event"
+                                                class="w-full h-full object-cover carousel-slide hidden" />
+                                        </div>
+                                        <!-- Carousel Navigation -->
+                                        <button
+                                            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-purple-700 p-2 rounded-full shadow-lg transition-all duration-300 carousel-prev">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 19l-7-7 7-7" />
+                                            </svg>
+                                        </button>
+                                        <button
+                                            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-purple-700 p-2 rounded-full shadow-lg transition-all duration-300 carousel-next">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
+                                        <!-- Carousel Indicators -->
+                                        <div
+                                            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                            <button
+                                                class="w-2 h-2 rounded-full bg-white/80 carousel-indicator active"></button>
+                                            <button
+                                                class="w-2 h-2 rounded-full bg-white/50 carousel-indicator"></button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="flex flex-col justify-center lg:block p-8">
                                     <div class="flex flex-wrap items-center gap-4 mb-4">
@@ -649,7 +681,8 @@
                                             class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold">1-Day
                                             Event</span>
                                     </div>
-                                    <h3 class="text-3xl font-bold text-gray-900 mb-4">International Day of Women and Girls in Science</h3>
+                                    <h3 class="text-3xl font-bold text-gray-900 mb-4">International Day of Women and
+                                        Girls in Science</h3>
                                     <p class="text-gray-700 mb-6">
                                         Join us for an inspiring day dedicated to empowering the next generation of
                                         women in STEM. Our theme "Unpacking STEM Careers: Her Voice in Science" focuses
@@ -682,9 +715,9 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                             </svg>
-                                            <span class="text-gray-700">In collaboration with <a
-                                                    href="" target="_blank"
-                                                    class="text-blue-700 hover:text-blue-800 transition-colors duration-300">YALI Network Akwa Ibom</a></span>
+                                            <span class="text-gray-700">In collaboration with <a href="" target="_blank"
+                                                    class="text-blue-700 hover:text-blue-800 transition-colors duration-300">YALI
+                                                    Network Akwa Ibom</a></span>
                                         </div>
                                     </div>
                                     <div class="flex flex-wrap gap-4">
@@ -898,12 +931,12 @@
     <script src="index.js">
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
         AOS.init();
-        // Initialize Lucide icons
+
         lucide.createIcons();
     </script>
+
 </body>
 
 </html>

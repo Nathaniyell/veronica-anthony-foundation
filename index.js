@@ -1,8 +1,8 @@
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
 document.addEventListener("DOMContentLoaded", () => {
-        const scrollToTopButton = document.getElementById('scrollToTop');
-   
+    const scrollToTopButton = document.getElementById('scrollToTop');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 200) {
             scrollToTopButton.classList.remove('opacity-0', 'translate-y-10');
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
- 
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -77,3 +77,61 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+
+
+// Carousel functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.querySelector('.carousel-container');
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const indicators = carousel.querySelectorAll('.carousel-indicator');
+    const prevButton = carousel.querySelector('.carousel-prev');
+    const nextButton = carousel.querySelector('.carousel-next');
+    let currentSlide = 0;
+
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            if (index === currentSlide) {
+                slide.classList.remove('hidden');
+            } else {
+                slide.classList.add('hidden');
+            }
+        });
+
+        indicators.forEach((indicator, index) => {
+            if (index === currentSlide) {
+                indicator.classList.add('bg-white/80');
+                indicator.classList.remove('bg-white/50');
+            } else {
+                indicator.classList.remove('bg-white/80');
+                indicator.classList.add('bg-white/50');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlides();
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlides();
+    }
+
+    // Event listeners
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            updateSlides();
+        });
+    });
+
+    // Optional: Auto-advance slides every 2 seconds
+    setInterval(nextSlide, 2000);
+});
+
+
