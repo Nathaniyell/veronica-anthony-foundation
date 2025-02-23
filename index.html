@@ -739,6 +739,97 @@
             </div>
         </section>
 
+        <!-- Gallery Section -->
+        <section class="py-24 bg-white" id="gallery">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Section Header -->
+                    <div class="text-center mb-16" data-aos="fade-up">
+                        <h2
+                            class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-900 mb-4">
+                            Event Gallery
+                        </h2>
+                        <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                            Explore moments from our impactful events and community initiatives
+                        </p>
+                    </div>
+
+                    <!-- Gallery Carousel -->
+                    <div class="relative overflow-hidden rounded-2xl" data-aos="fade-up">
+                        <div class="gallery-carousel relative aspect-[16/9]">
+                            <!-- Gallery Images -->
+                            <div class="gallery-slides absolute inset-0 flex transition-transform duration-500">
+                                <div class="gallery-slide min-w-full">
+                                    <img src="event1.jpg" alt="Community Outreach" class="w-full h-full object-cover">
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
+                                        <h3 class="text-white text-2xl font-bold mb-2">Community Outreach Program</h3>
+                                        <p class="text-white/90">Empowering local communities through education and
+                                            resources</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-slide min-w-full">
+                                    <img src="event2.png" alt="STEM Workshop" class="w-full h-full object-cover">
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
+                                        <h3 class="text-white text-2xl font-bold mb-2">STEM Workshop for Girls</h3>
+                                        <p class="text-white/90">Inspiring the next generation of women in science</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-slide min-w-full">
+                                    <img src="cook2.jpg" alt="Clean Cooking Initiative"
+                                        class="w-full h-full object-cover">
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
+                                        <h3 class="text-white text-2xl font-bold mb-2">Clean Cooking Initiative</h3>
+                                        <p class="text-white/90">Promoting sustainable and healthy cooking practices</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Carousel Controls -->
+                            <button
+                                class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-purple-700 p-3 rounded-full shadow-lg transition-all duration-300 gallery-prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button
+                                class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-purple-700 p-3 rounded-full shadow-lg transition-all duration-300 gallery-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+
+                            <!-- Carousel Indicators -->
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                                <button class="w-3 h-3 rounded-full bg-white/80 gallery-indicator active"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 gallery-indicator"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 gallery-indicator"></button>
+                            </div>
+                        </div>
+
+                        <!-- Thumbnail Navigation -->
+                        <div class="mt-4 grid grid-cols-3 gap-4">
+                            <button class="gallery-thumbnail rounded-lg overflow-hidden border-2 border-purple-700">
+                                <img src="event1.jpg" alt="Community Outreach" class="w-full h-24 object-cover">
+                            </button>
+                            <button class="gallery-thumbnail rounded-lg overflow-hidden border-2 border-transparent">
+                                <img src="event2.png" alt="STEM Workshop" class="w-full h-24 object-cover">
+                            </button>
+                            <button class="gallery-thumbnail rounded-lg overflow-hidden border-2 border-transparent">
+                                <img src="cook2.jpg" alt="Clean Cooking Initiative" class="w-full h-24 object-cover">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section id="cta" class="relative z-10 mx-auto max-w-6xl px-4 -mb-24">
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
