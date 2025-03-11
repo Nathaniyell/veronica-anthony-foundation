@@ -80,58 +80,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// Carousel functionality
 document.addEventListener('DOMContentLoaded', function () {
-    const carousel = document.querySelector('.carousel-container');
-    const slides = carousel.querySelectorAll('.carousel-slide');
-    const indicators = carousel.querySelectorAll('.carousel-indicator');
-    const prevButton = carousel.querySelector('.carousel-prev');
-    const nextButton = carousel.querySelector('.carousel-next');
-    let currentSlide = 0;
+    class Carousel {
+        constructor(container) {
+            this.container = container;
+            this.slides = container.querySelectorAll('.carousel-slide');
+            this.indicators = container.querySelectorAll('.gallery-indicator');
+            this.prevButton = container.querySelector('.carousel-prev');
+            this.nextButton = container.querySelector('.carousel-next');
+            this.currentSlide = 0;
 
-    function updateSlides() {
-        slides.forEach((slide, index) => {
-            if (index === currentSlide) {
-                slide.classList.remove('hidden');
-            } else {
-                slide.classList.add('hidden');
-            }
-        });
+            this.init();
+        }
 
-        indicators.forEach((indicator, index) => {
-            if (index === currentSlide) {
-                indicator.classList.add('bg-white/80');
-                indicator.classList.remove('bg-white/50');
-            } else {
-                indicator.classList.remove('bg-white/80');
-                indicator.classList.add('bg-white/50');
-            }
-        });
+        init() {
+            this.updateSlides();
+
+            // Event listeners
+            this.nextButton.addEventListener('click', () => this.nextSlide());
+            this.prevButton.addEventListener('click', () => this.prevSlide());
+
+            this.indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    this.currentSlide = index;
+                    this.updateSlides();
+                });
+            });
+
+            // Optional: Auto-advance slides every 2 seconds
+            setInterval(() => this.nextSlide(), 2000);
+        }
+
+        updateSlides() {
+            this.slides.forEach((slide, index) => {
+                if (index === this.currentSlide) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+
+            this.indicators.forEach((indicator, index) => {
+                if (index === this.currentSlide) {
+                    indicator.classList.add('bg-white/80');
+                    indicator.classList.remove('bg-white/50');
+                } else {
+                    indicator.classList.remove('bg-white/80');
+                    indicator.classList.add('bg-white/50');
+                }
+            });
+        }
+
+        nextSlide() {
+            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+            this.updateSlides();
+        }
+
+        prevSlide() {
+            this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+            this.updateSlides();
+        }
     }
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateSlides();
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateSlides();
-    }
-
-    // Event listeners
-    nextButton.addEventListener('click', nextSlide);
-    prevButton.addEventListener('click', prevSlide);
-
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentSlide = index;
-            updateSlides();
-        });
-    });
-
-    // Optional: Auto-advance slides every 2 seconds
-    setInterval(nextSlide, 2000);
+    // Initialize carousels
+    const carousels = document.querySelectorAll('.carousel-container');
+    carousels.forEach(container => new Carousel(container));
 });
 
 
