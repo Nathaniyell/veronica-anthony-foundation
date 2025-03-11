@@ -107,8 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
 
-            // Optional: Auto-advance slides every 2 seconds
-            setInterval(() => this.nextSlide(), 2000);
+            setInterval(() => this.nextSlide(), 5000);
         }
 
         updateSlides() {
