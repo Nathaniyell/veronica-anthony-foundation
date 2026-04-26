@@ -61,6 +61,10 @@ window.setEventsProgramTab = function (program, opts) {
     const resolved = valid.has(program) ? program : 'all';
     updateEventsTabButtons(resolved, tabButtons);
     applyEventsProgramFilter(resolved);
+    const tabSelect = document.getElementById('events-tab-select');
+    if (tabSelect && tabSelect.value !== resolved) {
+        tabSelect.value = resolved;
+    }
     if (opts.updateHash) {
         setEventsHash(resolved);
     }
@@ -76,6 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.setEventsProgramTab(program, { updateHash: true });
             });
         });
+        const eventsTabSelect = document.getElementById('events-tab-select');
+        if (eventsTabSelect) {
+            eventsTabSelect.addEventListener('change', () => {
+                window.setEventsProgramTab(eventsTabSelect.value, { updateHash: true });
+            });
+        }
         window.addEventListener('hashchange', () => {
             if (!window.location.hash.startsWith('#events')) return;
             window.setEventsProgramTab(readEventsProgramFromHash(), { updateHash: false });

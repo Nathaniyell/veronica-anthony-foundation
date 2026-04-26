@@ -570,9 +570,25 @@
 
                     <!-- Program tabs -->
                     <div class="mb-12" data-aos="fade-up" data-aos-delay="50">
-                        <p id="events-tab-desc" class="sr-only">Filter events by program area</p>
+                        <p id="events-tab-desc" class="sr-only">Filter events by program area</p>                        
+                        <div class="md:hidden mb-4">
+                            <label for="events-tab-select"
+                                class="mb-2 block text-sm font-semibold text-purple-900">Program</label>
+                            <select id="events-tab-select"
+                                class="events-tab-select w-full rounded-xl border border-purple-200 bg-white px-4 py-3.5 text-base font-medium text-gray-900 shadow-sm focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-0">
+                                <option value="all">All programs</option>
+                                <option value="climate-action">Climate action</option>
+                                <option value="community-development">Community development</option>
+                                <option value="women-youth">Women &amp; youth</option>
+                                <option value="education">Education</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="nutrition">Nutrition</option>
+                                <option value="renewable-energy">Renewable energy</option>
+                                <option value="clean-cooking">Clean cooking</option>
+                            </select>
+                        </div>
                         <div role="tablist" aria-describedby="events-tab-desc"
-                            class="events-tablist flex flex-nowrap justify-center gap-2 overflow-x-auto pb-2 pt-2 px-0.5 snap-x snap-mandatory rounded-2xl bg-white/60 p-2 ring-1 ring-purple-100 shadow-sm backdrop-blur-sm">
+                            class="events-tablist hidden md:flex md:flex-wrap md:justify-center gap-2 rounded-2xl bg-white/60 p-2 ring-1 ring-purple-100 shadow-sm backdrop-blur-sm">
                             <button type="button" role="tab" data-events-tab="all" aria-selected="true"
                                 class="events-tab-btn shrink-0 snap-start rounded-full px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 bg-gradient-to-r from-purple-700 to-purple-900 text-white shadow-md">All</button>
                             <button type="button" role="tab" data-events-tab="climate-action" aria-selected="false"
