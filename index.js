@@ -1,5 +1,89 @@
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
+const EVENTS_TAB_BASE =
+    'events-tab-btn shrink-0 snap-start rounded-full px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2';
+const EVENTS_TAB_ACTIVE =
+    'bg-gradient-to-r from-purple-700 to-purple-900 text-white shadow-md';
+const EVENTS_TAB_INACTIVE =
+    'bg-white/90 text-purple-900 ring-1 ring-purple-200 shadow-sm hover:bg-white hover:ring-purple-300';
+
+function readEventsProgramFromHash() {
+    const h = window.location.hash;
+    if (h.startsWith('#events--')) {
+        const slug = h.slice('#events--'.length);
+        return slug || 'all';
+    }
+    return 'all';
+}
+
+function setEventsHash(program) {
+    if (program === 'all') {
+        history.replaceState(null, '', '#events');
+    } else {
+        history.replaceState(null, '', '#events--' + program);
+    }
+}
+
+function applyEventsProgramFilter(program) {
+    const stack = document.getElementById('events-cards-stack');
+    if (!stack) return;
+    let visibleCount = 0;
+    stack.querySelectorAll('.event-card').forEach((card) => {
+        const match = program === 'all' || card.dataset.eventProgram === program;
+        card.classList.toggle('hidden', !match);
+        if (match) visibleCount += 1;
+    });
+    const emptyEl = document.getElementById('events-empty-state');
+    if (emptyEl) {
+        const showEmpty = program !== 'all' && visibleCount === 0;
+        emptyEl.classList.toggle('hidden', !showEmpty);
+    }
+}
+
+function updateEventsTabButtons(activeProgram, tabButtons) {
+    tabButtons.forEach((btn) => {
+        const tab = btn.dataset.eventsTab;
+        const isActive = tab === activeProgram;
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        btn.className = EVENTS_TAB_BASE + ' ' + (isActive ? EVENTS_TAB_ACTIVE : EVENTS_TAB_INACTIVE);
+    });
+}
+
+window.setEventsProgramTab = function (program, opts) {
+    opts = opts || {};
+    const section = document.getElementById('events');
+    if (!section) return;
+    const tabButtons = section.querySelectorAll('[data-events-tab]');
+    if (!tabButtons.length) return;
+    const valid = new Set(
+        Array.from(tabButtons).map((b) => b.dataset.eventsTab)
+    );
+    const resolved = valid.has(program) ? program : 'all';
+    updateEventsTabButtons(resolved, tabButtons);
+    applyEventsProgramFilter(resolved);
+    if (opts.updateHash) {
+        setEventsHash(resolved);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const eventsSection = document.getElementById('events');
+    if (eventsSection) {
+        const tabButtons = eventsSection.querySelectorAll('[data-events-tab]');
+        tabButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const program = btn.dataset.eventsTab;
+                window.setEventsProgramTab(program, { updateHash: true });
+            });
+        });
+        window.addEventListener('hashchange', () => {
+            if (!window.location.hash.startsWith('#events')) return;
+            window.setEventsProgramTab(readEventsProgramFromHash(), { updateHash: false });
+        });
+        window.setEventsProgramTab(readEventsProgramFromHash(), { updateHash: false });
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const scrollToTopButton = document.getElementById('scrollToTop');
 
@@ -23,7 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
+            const program = this.dataset.eventsProgram;
+            const href = this.getAttribute('href');
+            if (typeof window.setEventsProgramTab === 'function') {
+                if (program) {
+                    window.setEventsProgramTab(program, { updateHash: true });
+                } else if (href === '#events') {
+                    window.setEventsProgramTab('all', { updateHash: true });
+                }
+            }
+            const targetId = href;
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
