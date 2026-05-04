@@ -24,6 +24,15 @@ function setEventsHash(program) {
     }
 }
 
+function refreshAOSWhenAvailable() {
+    if (typeof AOS === 'undefined') return;
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            AOS.refresh();
+        });
+    });
+}
+
 function applyEventsProgramFilter(program) {
     const stack = document.getElementById('events-cards-stack');
     if (!stack) return;
@@ -38,6 +47,7 @@ function applyEventsProgramFilter(program) {
         const showEmpty = program !== 'all' && visibleCount === 0;
         emptyEl.classList.toggle('hidden', !showEmpty);
     }
+    refreshAOSWhenAvailable();
 }
 
 function updateEventsTabButtons(activeProgram, tabButtons) {
@@ -130,10 +140,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
+                const isEventsSection =
+                    href === '#events' || Boolean(program);
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start'
+                    block: isEventsSection ? 'center' : 'start',
                 });
+                refreshAOSWhenAvailable();
+                const bumpAosAfterScroll = () => refreshAOSWhenAvailable();
+                if ('onscrollend' in window) {
+                    window.addEventListener('scrollend', bumpAosAfterScroll, {
+                        once: true,
+                    });
+                }
+                setTimeout(bumpAosAfterScroll, 700);
             }
         });
     });
