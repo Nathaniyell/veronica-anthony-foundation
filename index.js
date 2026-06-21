@@ -33,6 +33,75 @@ function refreshAOSWhenAvailable() {
     });
 }
 
+function getProgramEventCounts() {
+    const counts = new Map();
+    document.querySelectorAll('#events-cards-stack .event-card').forEach((card) => {
+        const program = card.dataset.eventProgram;
+        if (!program) return;
+        counts.set(program, (counts.get(program) || 0) + 1);
+    });
+    return counts;
+}
+
+function sortByEventAvailability(items, getProgramId, pinnedFirstId) {
+    const counts = getProgramEventCounts();
+    const keyed = items.map((el, index) => {
+        const id = getProgramId(el);
+        return { el, id, index, count: counts.get(id) || 0 };
+    });
+    keyed.sort((a, b) => {
+        if (pinnedFirstId) {
+            if (a.id === pinnedFirstId) return -1;
+            if (b.id === pinnedFirstId) return 1;
+        }
+        const aHasEvents = a.count > 0;
+        const bHasEvents = b.count > 0;
+        if (aHasEvents !== bHasEvents) return aHasEvents ? -1 : 1;
+        if (a.count !== b.count) return b.count - a.count;
+        return a.index - b.index;
+    });
+    return keyed.map((item) => item.el);
+}
+
+function reorderDomChildren(parent, elements) {
+    elements.forEach((el) => parent.appendChild(el));
+}
+
+function reorderProgramsByEventAvailability() {
+    const tablist = document.querySelector('.events-tablist');
+    if (tablist) {
+        const buttons = Array.from(tablist.querySelectorAll('[data-events-tab]'));
+        reorderDomChildren(
+            tablist,
+            sortByEventAvailability(buttons, (btn) => btn.dataset.eventsTab, 'all')
+        );
+    }
+
+    const tabSelect = document.getElementById('events-tab-select');
+    if (tabSelect) {
+        const options = Array.from(tabSelect.options);
+        reorderDomChildren(
+            tabSelect,
+            sortByEventAvailability(options, (opt) => opt.value, 'all')
+        );
+    }
+
+    const programsGrid = document.querySelector('#programs .grid');
+    if (programsGrid) {
+        const cards = Array.from(programsGrid.children);
+        reorderDomChildren(
+            programsGrid,
+            sortByEventAvailability(
+                cards,
+                (card) => card.querySelector('[data-events-program]')?.dataset.eventsProgram,
+                null
+            )
+        );
+    }
+
+    refreshAOSWhenAvailable();
+}
+
 function applyEventsProgramFilter(program) {
     const stack = document.getElementById('events-cards-stack');
     if (!stack) return;
@@ -81,6 +150,8 @@ window.setEventsProgramTab = function (program, opts) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    reorderProgramsByEventAvailability();
+
     const eventsSection = document.getElementById('events');
     if (eventsSection) {
         const tabButtons = eventsSection.querySelectorAll('[data-events-tab]');
