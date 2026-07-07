@@ -67,6 +67,21 @@ function reorderDomChildren(parent, elements) {
     elements.forEach((el) => parent.appendChild(el));
 }
 
+function reorderEventsByDate() {
+    const stack = document.getElementById('events-cards-stack');
+    if (!stack) return;
+    const cards = Array.from(stack.querySelectorAll('.event-card'));
+    cards.sort((a, b) => {
+        const aDate = a.dataset.eventDate || '';
+        const bDate = b.dataset.eventDate || '';
+        if (!aDate && !bDate) return 0;
+        if (!aDate) return 1;
+        if (!bDate) return -1;
+        return bDate.localeCompare(aDate);
+    });
+    reorderDomChildren(stack, cards);
+}
+
 function reorderProgramsByEventAvailability() {
     const tablist = document.querySelector('.events-tablist');
     if (tablist) {
@@ -150,6 +165,7 @@ window.setEventsProgramTab = function (program, opts) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    reorderEventsByDate();
     reorderProgramsByEventAvailability();
 
     const eventsSection = document.getElementById('events');
