@@ -84,22 +84,6 @@
         .hero-overlay {
             background: linear-gradient(rgba(109, 40, 217, 0.85), rgba(124, 58, 237, 0.85));
         }
-
-        .donate-button-gradient {
-            animation: gradient 8s linear infinite;
-            background: linear-gradient(90deg, #6d28d9, #4c1d95, #6d28d9);
-            background-size: 200% 100%;
-        }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            100% {
-                background-position: 200% 50%;
-            }
-        }
     </style>
 </head>
 
@@ -119,19 +103,30 @@
 
 
                 <!-- Desktop Navigation -->
-                <nav id="desktopNav" class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="nav-link text-sm font-semibold text-purple-800 relative group">About</a>
-                    <a href="#programs"
-                        class="nav-link text-sm font-semibold text-purple-800 relative group">Programs</a>
-                    <a href="#impact" class="nav-link text-sm font-semibold text-purple-800 relative group">Impact</a>
-                    <a href="#events" class="nav-link text-sm font-semibold text-purple-800 relative group">Events</a>
-                    <a href="#contact" class="nav-link text-sm font-semibold text-purple-800 relative group">Contact</a>
-                </nav>
+                <div class="hidden md:flex items-center gap-6">
+                    <nav id="desktopNav" class="flex items-center gap-8">
+                        <a href="#about" class="nav-link text-sm font-semibold text-purple-800 relative group">About</a>
+                        <a href="#programs"
+                            class="nav-link text-sm font-semibold text-purple-800 relative group">Programs</a>
+                        <a href="#impact" class="nav-link text-sm font-semibold text-purple-800 relative group">Impact</a>
+                        <a href="#events" class="nav-link text-sm font-semibold text-purple-800 relative group">Events</a>
+                        <a href="#contact" class="nav-link text-sm font-semibold text-purple-800 relative group">Contact</a>
+                    </nav>
+                    <a id="donateDesktop" href="https://paystack.shop/pay/suuep21nek" target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white bg-purple-700 hover:bg-purple-800 shadow-md hover:shadow-lg transition-all duration-300">
+                        Donate
+                    </a>
+                </div>
 
-
-                <!-- Mobile Menu Button -->
-                <button id="mobileMenuButton"
-                    class="md:hidden p-2 text-purple-800 hover:text-purple-700 transition-colors">
+                <div class="flex items-center gap-2 md:hidden">
+                    <a href="https://paystack.shop/pay/suuep21nek" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white bg-purple-700 hover:bg-purple-800 shadow-md transition-colors duration-300">
+                        Donate
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuButton"
+                        class="p-2 text-purple-800 hover:text-purple-700 transition-colors">
                     <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -145,7 +140,8 @@
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
-                </button>
+                    </button>
+                </div>
             </div>
 
             <!-- Mobile Navigation -->
@@ -162,7 +158,10 @@
                         class="text-purple-800 hover:text-purple-700 transition-colors px-4 py-2 hover:bg-purple-50 rounded-lg">Events</a>
                     <a href="#contact"
                         class="text-purple-800 hover:text-purple-700 transition-colors px-4 py-2 hover:bg-purple-50 rounded-lg">Contact</a>
-
+                    <a href="https://paystack.shop/pay/suuep21nek" target="_blank" rel="noopener noreferrer"
+                        class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white bg-purple-700 hover:bg-purple-800 shadow-md transition-colors duration-300">
+                        Donate
+                    </a>
                 </nav>
             </div>
         </div>
@@ -181,7 +180,7 @@
                 <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
                     Working together to create sustainable change through Climate Action, Education and Health
                 </p>
-                <div class="flex gap-4 justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">              
                     <a href="#cta"
                         class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-purple-700 text-white hover:bg-purple-700 h-11 px-8">
                         Get Involved
@@ -1720,14 +1719,19 @@
                             <p class="text-lg italic text-purple-200 mb-12" data-aos="fade-up" data-aos-delay="200">
                                 Every action, big or small, has the power to transform lives.
                             </p>
-                            <button
-                                class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-purple-900 bg-white rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-                                data-aos="fade-up" data-aos-delay="300">
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up"
+                                data-aos-delay="300">
+                                <a href="https://paystack.shop/pay/suuep21nek" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-slate-900 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                                    Donate Now
+                                </a>
                                 <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=kn2ybltGPkK4rp8nVlmTlYgK_n1-yllAncqjnHrWTZRUQjhPU0I4MU5aT0U2MThSTFIzUVRUMlA2Ny4u"
-                                    target="_blank">
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-purple-900 bg-white rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                                     Become a Volunteer
                                 </a>
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1793,6 +1797,14 @@
                                 class="text-gray-700 hover:text-purple-700 transition-colors duration-300 w-fit">
                                 <span class="relative group">
                                     Events
+                                    <span
+                                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-700 transition-all duration-300 group-hover:w-full"></span>
+                                </span>
+                            </a>
+                            <a href="https://paystack.shop/pay/suuep21nek" target="_blank" rel="noopener noreferrer"
+                                class="text-gray-700 hover:text-purple-700 transition-colors duration-300 w-fit">
+                                <span class="relative group">
+                                    Donate
                                     <span
                                         class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-700 transition-all duration-300 group-hover:w-full"></span>
                                 </span>
